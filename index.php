@@ -1,3 +1,12 @@
+<?php
+// functions
+function makeReturn(){
+    echo "<br /><button onClick='window.history.back();'>Go Back</button>";
+}
+
+
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +19,16 @@
 <?php 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $name = $_POST["name"];
+    // validation
+    if(!empty($_POST['name'])){
+        $name = $_POST['name'];
+    }else{
+        $name = NULL;
+        echo "<p>You must enter a name</p>";
+        makeReturn(); return;
+    }
+
+    
     $mail = $_POST['mail'];
     $comment = $_POST['comment'];
 
@@ -32,8 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<p>Correct answer</p>";
         }
     }else{
-        echo "You must select one answer";
-        return;
+        echo "You must select one answer"; 
+        makeReturn(); return;
     }
 
     echo "<p>$name said:</p>";
