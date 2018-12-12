@@ -24,6 +24,8 @@ function makeReturn($res){
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // validation
+    $time = (!isset($_POST['time']))? NULL : $_POST['time'];
+
     if(!empty(trim($_POST['name']))){
         $name = $_POST['name'];
     }else{
@@ -63,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<p>Wrong answer to question. You can't throw a window</p>";
                 break;
             case "D":
-                echo "<p>Correct answer</p>"; 
+                echo "<p>That is correct!</p>"; 
                 break;
             default:
                 echo "<p>Your answer is half correct. I'll let you comment.</p>";
@@ -73,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         makeReturn($responses); return;
     }
 
-    echo "<p>$name said:</p>";
+    echo "<p>At ".$_POST['time'].", $name said:</p>";
     echo "<blockquote>$comment</blockquote>";
 
     echo "<p>If you are unhappy with what $name said, 
@@ -84,7 +86,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
 
-}else{ ?>
+}else{ 
+    
+    $time =  date('H:i, F j');
+    
+
+    
+    ?>
     <h2>Generic Comment Form</h2> <p>This will evently store data in a database.
     Right now, it just responds to you upon submission. Try it!</p>
 
@@ -113,6 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </textarea>
             </dd>
         </dl>
+        <input type="hidden" name="time" value= "<?php echo $time ?>" />
         <p><input type="submit" /></p>
     </fieldset>
     </form>
