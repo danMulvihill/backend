@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     
     ?>
-    <h2>Generic Comment Form</h2> <p>This will evently store data in a database.
+    <h2>Generic Comment Form</h2> <p>This will eventually store data in a database.
     Right now, it just responds to you upon submission. Try it!</p>
 
     <form action="" method="POST">
