@@ -1,0 +1,56 @@
+body{
+    font-family: Segoe UI,Roboto,Oxygen,Ubuntu,Droid Sans,sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .container{
+    margin: 10px;
+  }
+  
+  .title{
+      color: white;
+      /* padding: 15px 0; */
+      padding-left: 10px;
+      margin: 0;
+  
+    }
+  
+  .top-nav{
+    background: black;
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  .top-nav ul{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0; padding: 0;
+    justify-content: flex-end;
+    list-style-type: none;
+    
+  }
+  .top-nav ul li{
+    margin: 10px;
+    
+    
+  }
+  .top-nav ul li a{
+    color: cyan;
+    text-decoration: none;
+  }
+  
+  
+  
+  .logo{
+    display: flex;
+    justify-content: space-between;
+    
+    background: black;
+    opacity: 0.8;
+    list-style-type: none;
+    margin: 0 ; padding: 0;
+  }
+  
+  .logo h2{
+    padding: 0; margin: 0;
+  }

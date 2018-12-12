@@ -4,21 +4,11 @@ function makeReturn($res){
     //print_r($res);
     foreach($res as $response){
         echo "<p>$response</p><button onClick='window.history.back();'>Go Back</button>";
-    }
-    
+    }    
 }
-
-
 ?>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Comments form</title>
-</head>
-<body>
+<?php include("header.php") ?>
 
 <?php 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -59,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($ans != NULL){
-        echo "Your answer: ".$ans;
+        echo "$name's answer: ".$ans;
         switch ($ans){
             case "A":
                 echo "<p>Wrong answer to question. You can't throw a window</p>";
@@ -78,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<p>At ".$_POST['time'].", $name said:</p>";
     echo "<blockquote>$comment</blockquote>";
 
-    echo "<p>If you are unhappy with what $name said, 
+    echo "<p>If anyone else is unhappy with what $name said, 
     he can be contacted at $mail</p>";
 
     if ($ans != "D"){
