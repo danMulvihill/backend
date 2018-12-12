@@ -20,7 +20,7 @@ function makeReturn($res){
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // validation
-    if(!empty($_POST['name'])){
+    if(!empty(trim($_POST['name']))){
         $name = $_POST['name'];
     }else{
         $name = NULL;
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         makeReturn($response); return;
     }
 
-    if(!empty($_POST['mail'])){
+    if(!empty(trim(($_POST['mail']))){
         $mail = $_POST['mail'];
         //format validation:
     }else{
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $response = "You must enter an email address";
         makeReturn($response); return;
     }
-    if(!empty($_POST['comment'])){
+    if(!empty(trim($_POST['comment']))){
         $comment = trim($_POST['comment']);
 
     }else{
