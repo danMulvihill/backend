@@ -1,7 +1,7 @@
 <?php
 // functions
-function makeReturn(){
-    echo "<br /><button onClick='window.history.back();'>Go Back</button>";
+function makeReturn($res){
+    echo "<p>$res</p><button onClick='window.history.back();'>Go Back</button>";
 }
 
 
@@ -24,13 +24,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = $_POST['name'];
     }else{
         $name = NULL;
-        echo "<p>You must enter a name</p>";
-        makeReturn(); return;
+        $response = "<p>You must enter a name</p>";
+        makeReturn($response); return;
     }
 
+    if(!empty($_POST['mail'])){
+        $mail = $_POST['mail'];
+        //format validation:
+    }else{
+        $mail = NULL;
+        $response = "You must enter an email address";
+        makeReturn($response); return;
+    }
+    if(!empty($_POST['comment'])){
+        $comment = trim($_POST['comment']);
+
+    }else{
+        $comment = NULL;
+        $response = "You didn't comment! What do you have to say?";
+        makeReturn($response); return;
+    }
     
-    $mail = $_POST['mail'];
-    $comment = $_POST['comment'];
 
     if(isset($_POST['ans'])){
         $ans = $_POST['ans'];
@@ -39,19 +53,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($ans != NULL){
+        echo "Your answer: ".$ans;
         switch ($ans){
-            case "hard":
+            case "A":
                 echo "<p>Wrong answer to question. You can't throw a window</p>";
                 break;
-            case "soft" || "class":
-                echo "<p>Your answer is half correct. I'll let you comment.</p>";
+            case "D":
+                echo "<p>Correct answer</p>"; 
                 break;
-            case "x":
-                echo "<p>Correct answer</p>";
+            default:
+                echo "<p>Your answer is half correct. I'll let you comment.</p>";
         }
     }else{
-        echo "You must select one answer"; 
-        makeReturn(); return;
+        $response =  "You must select one answer"; 
+        makeReturn($response); return;
     }
 
     echo "<p>$name said:</p>";
@@ -60,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<p>If you are unhappy with what $name said, 
     he can be contacted at $mail</p>";
 
-    if ($ans != "x"){
+    if ($ans != "D"){
         echo "<p>$name doesn't know what and object is. How embarrassing!</p>";
     }
     
@@ -79,14 +94,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <dd><input type="email" name="mail" /></dd>
             <dt>You must answer this question to comment: What is an Object? </dt>
             <dd>
-                <input type="radio" name="ans" value="hard" />
-                Anything you can throw <br />
-                <input type="radio" name="ans" value="soft" />
-                A collection of properties <br />
-                <input type="radio" name="ans" value="class" />
-                An instance of a class <br />
-                <input type="radio" name="ans" value="x" />
-                Both B and C </ br>
+                <input type="radio" name="ans" value="A" />
+                A. Anything you can throw <br />
+                <input type="radio" name="ans" value="B" />
+                B. A collection of properties <br />
+                <input type="radio" name="ans" value="C" />
+                C. An instance of a class <br />
+                <input type="radio" name="ans" value="D" />
+                D. Both B and C </ br>
             </dd>
             <dt>Comments:</dt>
             <dd>
