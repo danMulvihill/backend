@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         makeReturn($response); return;
     }
 
-    if(!empty(trim(($_POST['mail']))){
+    if(!empty(trim($_POST['mail']))){
         $mail = $_POST['mail'];
         //format validation:
     }else{
