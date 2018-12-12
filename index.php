@@ -1,7 +1,11 @@
 <?php
 // functions
 function makeReturn($res){
-    echo "<p>$res</p><button onClick='window.history.back();'>Go Back</button>";
+    //print_r($res);
+    foreach($res as $response){
+        echo "<p>$response</p><button onClick='window.history.back();'>Go Back</button>";
+    }
+    
 }
 
 
@@ -24,8 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = $_POST['name'];
     }else{
         $name = NULL;
-        $response = "<p>You must enter a name</p>";
-        makeReturn($response); return;
+        $responses[] = "<p>You must enter a name</p>";
+        makeReturn($responses); return;
     }
 
     if(!empty(trim($_POST['mail']))){
@@ -33,16 +37,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //format validation:
     }else{
         $mail = NULL;
-        $response = "You must enter an email address";
-        makeReturn($response); return;
+        $responses[] = "You must enter an email address";
+        makeReturn($responses); return;
     }
     if(!empty(trim($_POST['comment']))){
         $comment = trim($_POST['comment']);
 
     }else{
         $comment = NULL;
-        $response = "You didn't comment! What do you have to say?";
-        makeReturn($response); return;
+        $responses[] = "You didn't comment! What do you have to say?";
+        makeReturn($responses); return;
     }
     
 
@@ -65,8 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<p>Your answer is half correct. I'll let you comment.</p>";
         }
     }else{
-        $response =  "You must select one answer"; 
-        makeReturn($response); return;
+        $responses[] =  "You must select one answer"; 
+        makeReturn($responses); return;
     }
 
     echo "<p>$name said:</p>";
